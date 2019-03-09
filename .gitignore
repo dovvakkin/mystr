@@ -1,0 +1,7 @@
+*.DS_Store
+*._*
+.idea
+/cmake-build-debug
+/cmake-build-remote
+/cmake-build-system
+
