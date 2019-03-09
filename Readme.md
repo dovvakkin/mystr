@@ -4,7 +4,7 @@
 
 Процедура запуска тестов:
 ```
-mkdir build
-cd build
-cmake 
+$ mkdir build
+$ cd build
+$ cmake 
 ```
