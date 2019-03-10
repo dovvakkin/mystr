@@ -6,7 +6,7 @@
 ```
 $ mkdir build && cd build
 $ cmake .. && make
-$ ./RunMatrixTest
+$ ./RunStringTest
 ```
 
 В результате будет выведено примерно следующее: 
