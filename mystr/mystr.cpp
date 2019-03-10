@@ -192,8 +192,6 @@ std::ostream &operator<<(std::ostream &out, const mystr &obj) {
 }
 
 std::istream& operator>>(std::istream &in, mystr &obj) {
-    //todo
-    /* operator>> */
     size_t len = 1;
     size_t cur = 0;
     auto q = new char[len];
