@@ -30,6 +30,26 @@ TEST(StringTest, Operators) {
 
     a = "1";
     b = "2";
+    EXPECT_TRUE(a < b);
+    EXPECT_FALSE(a > b);
+
+    a = "11";
+    b = "12";
+    EXPECT_TRUE(a < b);
+    EXPECT_FALSE(a > b);
+
+    a = "11";
+    b = "1";
+    EXPECT_TRUE(a > b);
+    EXPECT_FALSE(a < b);
+
+    a = "1";
+    b = "11";
+    EXPECT_TRUE(a < b);
+    EXPECT_FALSE(a > b);
+
+    a = "1";
+    b = "2";
     c = "12";
     EXPECT_TRUE(c == (a + b));
     EXPECT_FALSE(c != (a + b));
@@ -59,5 +79,18 @@ TEST(StringTest, Streams) {
     ss.str("");
     ss.clear(); // Clear state flags.
 
+    ss.str("WH40k");
+    ss >> a;
+    b = "WH40k";
+    EXPECT_TRUE(a == b);
+    ss.str("");
+    ss.clear(); // Clear state flags.
+
+    ss.str("RandomText\n");
+    ss >> a;
+    b = "RandomText";
+    EXPECT_TRUE(a == b);
+    ss.str("");
+    ss.clear(); // Clear state flags.
 
 }

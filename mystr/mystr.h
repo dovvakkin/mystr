@@ -99,7 +99,7 @@ public:
 
     friend std::ostream &operator<<(std::ostream &out, const mystr &obj);
 
-    friend std::istream operator>>(std::istream &in, mystr &obj);
+    friend std::istream &operator>>(std::istream &in, mystr &obj);
 
 private:
     char *p;
@@ -118,7 +118,7 @@ private:
 
 std::ostream &operator<<(std::ostream &out, const mystr &obj);
 
-std::istream operator>>(std::istream &in, mystr &obj);
+std::istream &operator>>(std::istream &in, mystr &obj);
 
 bool operator>(const mystr &s1, const mystr &s2);
 

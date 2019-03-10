@@ -84,14 +84,13 @@ void mystr::itoa(int a, char *str, int lit_count) {
 
 void mystr::_change_total_size(size_t old_len, size_t new_len) {
     total_size += (-old_len + new_len);
-
 }
 
 mystr::operator int() {
     return atoi(p);
 }
 
-mystr& mystr::operator=(const mystr &other) {
+mystr &mystr::operator=(const mystr &other) {
     if (this == &other) {
         return *this;
     }
@@ -112,7 +111,7 @@ mystr& mystr::operator=(const mystr &other) {
     return *this;
 }
 
-mystr& mystr::operator=(const char *str) {
+mystr &mystr::operator=(const char *str) {
     size_t new_len = strlen(str);
     _change_total_size(len, new_len);
 
@@ -148,7 +147,7 @@ mystr mystr::operator+(const mystr &other) {
     return tmp;
 }
 
-mystr& mystr::operator+=(const mystr &other) {
+mystr &mystr::operator+=(const mystr &other) {
     size_t old_len = len;
     size_t new_len = len + other.len;
 
@@ -177,7 +176,7 @@ bool mystr::operator!=(const mystr &other) const {
 }
 
 
-char& mystr::operator[](size_t i) {
+char &mystr::operator[](size_t i) {
     if (i < len) {
         return p[i];
     } else {
@@ -192,10 +191,41 @@ std::ostream &operator<<(std::ostream &out, const mystr &obj) {
     return out;
 }
 
-std::istream operator>>(std::istream &in, mystr &obj) {
-  //todo
-  /* operator>> */
+std::istream& operator>>(std::istream &in, mystr &obj) {
+    //todo
+    /* operator>> */
+    size_t len = 1;
+    size_t cur = 0;
+    auto q = new char[len];
+    char c('&');
+    while  ((c != '\n') && !(in.eof())) {
+        c = in.get();
 
+        if (cur >= len) {
+            len *= 2;
+            auto r = new char[len];
+            memcpy(r, q, cur);
+            delete[] q;
+            q = r;
+        }
+
+        q[cur] = c;
+        ++cur;
+    };
+
+    // final resize
+    --cur;
+    auto r = new char[cur];
+    memcpy(r, q, cur);
+    delete[] q;
+    q = r;
+
+    obj._change_total_size(obj.len, cur);
+    obj.len = cur;
+    delete[] obj.p;
+    obj.p = q;
+
+    return in;
 };
 
 

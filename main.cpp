@@ -2,10 +2,12 @@
 
 int main() {
     mystr a(11);
-    mystr b(12);
-    mystr c(1);
 
-    std::cout << (a + b) << std::endl;
+
+    std::cin >> a;
+
+    mystr b(1);
+    std::cout << a << std::endl;
 
     return 0;
 }
