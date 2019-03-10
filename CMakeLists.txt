@@ -19,12 +19,12 @@ include_directories(mystr)
 
 add_executable(stupid_prak_of_stupid_prak main.cpp)
 
-add_executable(RunMatrixTest ./test/string_test.cpp)
+add_executable(RunStringTest ./test/string_test.cpp)
 
 add_subdirectory(mystr)
 
 target_link_libraries(stupid_prak_of_stupid_prak mystr_lib)
 
-target_link_libraries(RunMatrixTest gtest gtest_main Threads::Threads mystr_lib)
+target_link_libraries(RunStringTest gtest gtest_main Threads::Threads mystr_lib)
 
 #target_link_libraries(stupid_prak_of_stupid_prak gtest gtest_main)
