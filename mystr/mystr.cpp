@@ -177,7 +177,7 @@ bool mystr::operator!=(const mystr &other) const {
 
 
 char &mystr::operator[](size_t i) {
-    if (i < len) {
+    if ((i < len) && (i >= 0)) {
         return p[i];
     } else {
         throw std::out_of_range("there is no element with index " + std::to_string(i));
