@@ -130,24 +130,38 @@ mystr& mystr::operator=(const char *str) {
     return *this;
 }
 
-mystr& mystr::operator+(const mystr &other) {
+mystr mystr::operator+(const mystr &other) {
     size_t old_len = len;
     size_t new_len = len + other.len;
-    _change_total_size(len, new_len);
+
+    mystr tmp = mystr();
 
     auto q = new char[new_len];
     memcpy(q, p, old_len);
     memcpy(q + old_len, other.p, new_len - old_len);
+    _change_total_size(0, new_len);
+
+    delete[] tmp.p;
+    tmp.p = q;
+    tmp.len = new_len;
+
+    return tmp;
+}
+
+mystr& mystr::operator+=(const mystr &other) {
+    size_t old_len = len;
+    size_t new_len = len + other.len;
+
+    auto q = new char[new_len];
+    memcpy(q, p, old_len);
+    memcpy(q + old_len, other.p, new_len - old_len);
+    _change_total_size(old_len, new_len);
 
     delete[] p;
     p = q;
     len = new_len;
 
-    return *this;
-}
-
-mystr& mystr::operator+=(const mystr &other) {
-    return (*this + other);
+    return (*this);
 }
 
 bool mystr::operator==(const mystr &other) const {
@@ -162,10 +176,13 @@ bool mystr::operator!=(const mystr &other) const {
     return !(*this == other);
 }
 
-//todo
-/* operator [] */
+
 char& mystr::operator[](size_t i) {
-    return p[i];
+    if (i < len) {
+        return p[i];
+    } else {
+        throw std::out_of_range("there is no element with index " + std::to_string(i));
+    }
 }
 
 std::ostream &operator<<(std::ostream &out, const mystr &obj) {

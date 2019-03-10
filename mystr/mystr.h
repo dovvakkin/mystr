@@ -83,7 +83,7 @@ public:
 
     mystr &operator=(const char *str);
 
-    mystr &operator+(const mystr &other);
+    mystr operator+(const mystr &other);
 
     mystr &operator+=(const mystr &other);
 

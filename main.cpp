@@ -1,11 +1,11 @@
 #include "mystr/mystr.h"
 
 int main() {
-    mystr a(0);
-    mystr b("0");
-    std::cout << b << std::endl;
+    mystr a(11);
+    mystr b(12);
+    mystr c(1);
 
-    std::cout <<  "Мария - самая лучшая шиза" << std::endl;
+    std::cout << (a + b) << std::endl;
 
     return 0;
 }
